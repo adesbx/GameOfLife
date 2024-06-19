@@ -7,21 +7,21 @@ import fr.gameoflife.view.JfxView;
 import javax.swing.*;
 
 public class Main {
-    public static void main(String[] args) {
-        int width =  1024;
-        int height = 1024;
-        int pixelSize = 10;
-
-        GameProcessor processor = new GameProcessor();
+    public static void main(String[] args) throws InterruptedException {
+        GameProcessor processor = new GameProcessor(1024, 1024, 10);
         Controller controller = new Controller(processor);
 
         JFrame frame = new JFrame("Pixel Grid");
-        JfxView panel = new JfxView(width, height, pixelSize, controller);
+        JfxView panel = new JfxView(controller);
 
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.add(panel);
         frame.pack();
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
+
+        Thread.sleep(30000);
+        controller.doATick();
+        panel.repaint();
     }
 }

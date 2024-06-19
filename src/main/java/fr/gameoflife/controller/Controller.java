@@ -13,4 +13,20 @@ public class Controller {
     public CellList getPixels() {
         return processor.getPixels();
     }
+
+    public int getWidthCtrl() {
+        return processor.getWidth();
+    }
+
+    public int getHeightCtrl() {
+        return processor.getHeight();
+    }
+
+    public int getPixelSizeCtrl() {
+        return processor.getPixelSize();
+    }
+
+    public void doATick() {
+        processor.computeTick();
+    }
 }

@@ -11,15 +11,13 @@ public class JfxView extends JPanel {
     private final int width;
     private final int height;
     private final int pixelSize;
-    private CellList pixels = null;
-
     private Controller ctrl = null;
 
-    public JfxView(int newWidth, int newHeight, int newHpixelSize, Controller newCtrl) {
-        this.width = newWidth;
-        this.height = newHeight;
-        this.pixelSize = newHpixelSize;
+    public JfxView(Controller newCtrl) {
         ctrl = newCtrl;
+        this.width = ctrl.getWidthCtrl();
+        this.height = ctrl.getHeightCtrl();
+        this.pixelSize = ctrl.getPixelSizeCtrl();
         setPreferredSize(new Dimension(width , height ));
     }
 
