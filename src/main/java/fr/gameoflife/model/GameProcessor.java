@@ -2,8 +2,8 @@ package fr.gameoflife.model;
 
 import fr.gameoflife.model.Cell.Cell;
 import fr.gameoflife.model.Cell.CellList;
-
-import java.awt.*;
+import java.util.List;
+import java.util.ArrayList;
 
 public class GameProcessor {
     private final int width;
@@ -21,13 +21,19 @@ public class GameProcessor {
 
     public void computeTick() {
         CellList temp = new CellList(pixels);
+        List<Cell> cellsToDelete = new ArrayList<>();
 
         //for the alive cell
         for (Cell c : temp.getCellList()) {
             int numbNeighbor = getNumberOfNeighbor(c.getX(), c.getY());
             if(numbNeighbor != 2 || numbNeighbor != 3) {
-                temp.deleteOneCell(c);
+                cellsToDelete.add(c);
             }
+        }
+
+        //delete old cell
+        for (Cell c : cellsToDelete) {
+            temp.deleteOneCell(c);
         }
 
         //for new cell

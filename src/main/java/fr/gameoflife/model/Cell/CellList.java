@@ -10,9 +10,9 @@ public class CellList {
         //DEBUG
         Cell c1 = new Cell(10,10,true);
         this.CellList.add(c1);
-        Cell c2 = new Cell(15,10,true);
+        Cell c2 = new Cell(9,10,true);
         this.CellList.add(c2);
-        Cell c3 = new Cell(10,15,true);
+        Cell c3 = new Cell(8,10,true);
         this.CellList.add(c3);
     }
 

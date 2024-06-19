@@ -8,7 +8,7 @@ import javax.swing.*;
 
 public class Main {
     public static void main(String[] args) throws InterruptedException {
-        GameProcessor processor = new GameProcessor(1024, 1024, 10);
+        GameProcessor processor = new GameProcessor(512, 512, 10);
         Controller controller = new Controller(processor);
 
         JFrame frame = new JFrame("Pixel Grid");
@@ -20,8 +20,10 @@ public class Main {
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
 
-        Thread.sleep(30000);
-        controller.doATick();
-        panel.repaint();
+        while (true) {
+            Thread.sleep(5000);
+            controller.doATick();
+            panel.repaint();
+        }
     }
 }
