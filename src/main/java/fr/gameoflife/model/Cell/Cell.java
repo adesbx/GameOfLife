@@ -1,4 +1,4 @@
-package fr.gameoflife.model;
+package fr.gameoflife.model.Cell;
 
 public class Cell {
     private boolean alive;
