@@ -15,7 +15,7 @@ public class JfxView extends JPanel {
     private final int pixelSize;
     private Controller ctrl = null;
 
-    private boolean stop = false;
+    private boolean running = true;
 
     public JfxView(Controller newCtrl) {
         ctrl = newCtrl;
@@ -23,6 +23,26 @@ public class JfxView extends JPanel {
         this.height = ctrl.getHeightCtrl();
         this.pixelSize = ctrl.getPixelSizeCtrl();
         setPreferredSize(new Dimension(width , height ));
+
+        JPanel p1 = new JPanel();
+        JButton button1 = new JButton("Stop");
+        button1.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (running) {
+                    running = false;
+                    button1.setText("Start");
+                } else {
+                    synchronized (JfxView.this) {
+                        running = true;
+                        JfxView.this.notify();
+                    }
+                    button1.setText("Stop");
+                }
+            }
+        });
+        p1.add(button1);
+        add(p1);
     }
 
     @Override
@@ -35,17 +55,26 @@ public class JfxView extends JPanel {
     }
 
     public void play() throws InterruptedException {
-        JPanel p1 = new JPanel();
-        JButton button1 = new JButton("Stop");
-        //the button do nothing now
-        p1.add(button1);
-        add(p1);
-
-        while (!stop) {
-            Thread.sleep(200);
-            ctrl.doATick();
-            repaint();
-        }
+        Thread gameThread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    while (true) {
+                        synchronized (JfxView.this) {
+                            while (!running) {
+                                JfxView.this.wait();
+                            }
+                        }
+                        Thread.sleep(200);
+                        ctrl.doATick();
+                        repaint();
+                    }
+                } catch (InterruptedException e) {
+                    Thread.currentThread().interrupt();
+                }
+            }
+        });
+        gameThread.start();
     }
 
 }
