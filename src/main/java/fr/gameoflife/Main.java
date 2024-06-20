@@ -1,12 +1,10 @@
 package fr.gameoflife;
 
 import fr.gameoflife.controller.Controller;
-import fr.gameoflife.model.Cell.Cell;
 import fr.gameoflife.model.GameProcessor;
 import fr.gameoflife.view.JfxView;
 
 import javax.swing.*;
-import java.awt.*;
 
 public class Main {
     public static void main(String[] args) throws InterruptedException {
@@ -22,10 +20,6 @@ public class Main {
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
 
-        while (true) {
-            Thread.sleep(2000);
-            controller.doATick();
-            panel.repaint();
-        }
+        panel.play();
     }
 }

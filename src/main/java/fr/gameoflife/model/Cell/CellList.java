@@ -8,12 +8,12 @@ public class CellList {
 
     public CellList() {
         //DEBUG should turn
-        Cell c1 = new Cell(10,10,true);
-        this.CellList.add(c1);
-        Cell c2 = new Cell(9,10,true);
-        this.CellList.add(c2);
-        Cell c3 = new Cell(8,10,true);
-        this.CellList.add(c3);
+//        Cell c1 = new Cell(10,10,true);
+//        this.CellList.add(c1);
+//        Cell c2 = new Cell(9,10,true);
+//        this.CellList.add(c2);
+//        Cell c3 = new Cell(8,10,true);
+//        this.CellList.add(c3);
 
         //should stay alive
 //        Cell c1 = new Cell(10,10,true);
@@ -24,6 +24,18 @@ public class CellList {
 //        this.CellList.add(c3);
 //        Cell c4 = new Cell(9,11,true);
 //        this.CellList.add(c4);
+
+        //should move
+        Cell c1 = new Cell(10,10,true);
+        this.CellList.add(c1);
+        Cell c2 = new Cell(11,10,true);
+        this.CellList.add(c2);
+        Cell c3 = new Cell(12,10,true);
+        this.CellList.add(c3);
+        Cell c4 = new Cell(12,9,true);
+        this.CellList.add(c4);
+        Cell c5 = new Cell(11,8,true);
+        this.CellList.add(c5);
     }
 
     public CellList(CellList list) {
