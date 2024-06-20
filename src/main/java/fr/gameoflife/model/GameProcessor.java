@@ -48,7 +48,6 @@ public class GameProcessor {
             }
         }
 
-        System.out.println(getNumberOfNeighbor(9,11));
         pixels = temp;
     }
 

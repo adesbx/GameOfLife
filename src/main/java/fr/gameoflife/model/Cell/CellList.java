@@ -27,7 +27,10 @@ public class CellList {
     }
 
     public CellList(CellList list) {
-        this.CellList = list.getCellList();
+        this.CellList = new ArrayList<>();
+        for (Cell cell : list.getCellList()) {
+            this.CellList.add(new Cell(cell.getX(), cell.getY(), true));
+        }
     }
 
     public List<Cell> getCellList() {
