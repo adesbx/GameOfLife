@@ -26,7 +26,7 @@ public class GameProcessor {
         //for the alive cell
         for (Cell c : temp.getCellList()) {
             int numbNeighbor = getNumberOfNeighbor(c.getX(), c.getY());
-            if(numbNeighbor != 2 || numbNeighbor != 3) {
+            if (numbNeighbor != 2 && numbNeighbor != 3) {
                 cellsToDelete.add(c);
             }
         }
@@ -48,27 +48,34 @@ public class GameProcessor {
             }
         }
 
+        System.out.println(getNumberOfNeighbor(9,11));
         pixels = temp;
     }
 
     public int getNumberOfNeighbor(int x, int y) {
         int compt = 0;
+
         if(x-1 >= 0 && y+1 <= height && isAlive(x-1, y+1))
             compt++;
+
         if(x-1 >= 0 && isAlive(x-1, y))
             compt++;
+
         if(x-1 >= 0 && y-1 >= 0 && isAlive(x-1, y-1))
             compt++;
 
         if(y-1 >= 0 && isAlive(x, y-1))
             compt++;
+
         if(y+1 <= height && isAlive(x, y+1))
             compt++;
 
         if(x+1 <= width && y+1 <= height && isAlive(x+1, y+1))
             compt++;
+
         if(x+1 <= width && isAlive(x+1, y))
             compt++;
+
         if(x+1 <= width && y-1 >= 0 && isAlive(x+1, y-1))
             compt++;
 
@@ -76,12 +83,7 @@ public class GameProcessor {
     }
 
     public boolean isAlive(int x, int y) {
-        for (Cell c : pixels.getCellList()) {
-            if (c.getX() == x && c.getY() == y) {
-                return true;
-            }
-        }
-        return false;
+        return pixels.contains(new Cell(x, y, true));
     }
 
     public CellList getPixels() {
