@@ -1,5 +1,6 @@
 package fr.gameoflife.controller;
 
+import fr.gameoflife.model.Cell.Cell;
 import fr.gameoflife.model.Cell.CellList;
 import fr.gameoflife.model.GameProcessor;
 
@@ -28,5 +29,17 @@ public class Controller {
 
     public void doATick() {
         processor.computeTick();
+    }
+
+    public void addPixels(Cell c){
+        processor.getPixels().add(c);
+    }
+
+    public void delPixels(Cell c){
+        processor.getPixels().deleteOneCell(c);
+    }
+
+    public boolean alive(int x, int y) {
+        return processor.getPixels().contains(new Cell(x, y, true));
     }
 }

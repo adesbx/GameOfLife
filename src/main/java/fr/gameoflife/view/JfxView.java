@@ -8,6 +8,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class JfxView extends JPanel {
     private final int width;
@@ -42,7 +44,31 @@ public class JfxView extends JPanel {
             }
         });
         p1.add(button1);
+        JButton edit = new JButton("Edit");
+        edit.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (!running) {
+                    addMouseListener(new MouseAdapter() {
+                        public void mousePressed(MouseEvent e) {
+                            int x = e.getX() / pixelSize;
+                            int y = e.getY() / pixelSize;
+                            if (x >= 0 && x < width && y >= 0 && y < height) {
+                                if (ctrl.alive(x, y)){
+                                    ctrl.delPixels(new Cell(x, y, true));
+                                } else {
+                                    ctrl.addPixels(new Cell(x, y, true));
+                                }
+                            }
+                            repaint();
+                        }
+                    });
+                }
+            }
+        });
+        p1.add(edit);
         add(p1);
+
     }
 
     @Override
